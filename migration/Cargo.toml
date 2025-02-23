@@ -1,0 +1,15 @@
+[dependencies]
+anyhow = {workspace = true}
+app-config = {path = "../app_config"}
+sea-orm-migration = {workspace = true}
+tokio = {workspace = true}
+
+[lib]
+name = "migration"
+path = "src/lib.rs"
+
+[package]
+edition = "2021"
+name = "migration"
+publish = false
+version = "0.1.0"
