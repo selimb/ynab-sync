@@ -1,16 +1,16 @@
-[package]
-name = "ynab"
-version = "0.1.0"
-edition = "2021"
-
 [dependencies]
 anyhow = {workspace = true}
 app-config = {path = "../app_config"}
-reqwest = {workspace = true, features=["json"]}
+reqwest = {workspace = true, features = ["json"]}
 serde = {workspace = true}
 serde_json = {workspace = true}
 thiserror = {workspace = true}
-tokio ={ workspace = true}
+tokio = {workspace = true}
 
 [features]
 live_test = []
+
+[package]
+edition = "2021"
+name = "ynab"
+version = "0.1.0"

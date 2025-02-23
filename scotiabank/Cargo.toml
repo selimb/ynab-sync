@@ -1,7 +1,7 @@
-[package]
-name = "scotiabank"
-version = "0.1.0"
-edition = "2021"
-
 [dependencies]
 reqwest = {workspace = true}
+
+[package]
+edition = "2021"
+name = "scotiabank"
+version = "0.1.0"

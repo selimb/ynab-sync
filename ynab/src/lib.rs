@@ -80,8 +80,6 @@ impl Client {
             .append_pair("include_accounts", "true")
             .finish();
 
-        // XXX
-        println!("url: {}", url.to_string());
         let resp = self.send(self.request(Method::GET, url)).await?;
         Client::parse_json_resp::<BudgetSummaryResponse>(resp).await
     }
