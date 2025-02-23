@@ -4,6 +4,7 @@ config = {version = "0.14.0", features = ["json5"]}
 json5 = "0.4.1"
 serde = {workspace = true}
 tracing = {workspace = true}
+reqwest = {workspace = true}
 
 [package]
 edition = "2021"

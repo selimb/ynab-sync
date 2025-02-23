@@ -1,14 +1,41 @@
-use std::{fs, path::PathBuf};
+use std::{fs, path::PathBuf, str::FromStr};
 
 use anyhow::{anyhow, Context as _};
-use serde::Deserialize;
+use serde::{Deserialize, Deserializer};
 use tracing::info;
 
 const CONFIG_FILENAME: &str = "config.json5";
 
+fn deser_url<'de, D>(deserializer: D) -> Result<reqwest::Url, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let s = String::deserialize(deserializer)?;
+    reqwest::Url::from_str(&s).map_err(serde::de::Error::custom)
+}
+
+#[derive(Clone, Deserialize)]
+pub struct YnabConfig {
+    #[serde(deserialize_with = "deser_url")]
+    pub base_url: reqwest::Url,
+    pub token: String,
+    pub budget_id: String,
+}
+
+impl std::fmt::Debug for YnabConfig {
+    /// Same as default behavior, but censors `password`.
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("YnabConfig")
+            .field("base_url", &self.base_url)
+            .field("token", &"***")
+            .finish()
+    }
+}
+
 #[derive(Clone, Debug, Deserialize)]
 pub struct AppConfig {
     pub database_file: String,
+    pub ynab: YnabConfig,
 }
 
 impl AppConfig {

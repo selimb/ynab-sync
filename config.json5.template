@@ -1,3 +1,8 @@
 {
-    database_file: "db.sqlite"
+  database_file: "db.sqlite",
+  ynab: {
+    base_url: "https://api.ynab.com/v1/budgets",
+    token: "XXX",
+    budget_id: "XXX",
+  },
 }
